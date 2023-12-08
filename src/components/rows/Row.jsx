@@ -8,7 +8,7 @@ import getMovieTrailer from "../../helper/getMovieTrailer";
 function Row({ title, url, category }) {
   const Context = useContext(AllContext);
   const popularMovies = Context.state.popularMovies;
-  
+
   useEffect(() => {
     axiosInstance.get(url).then((response) => {
       switch (category) {
@@ -197,8 +197,9 @@ function Row({ title, url, category }) {
         return [];
     }
   };
-  
+
   console.log(popularMovies, "populasfd ");
+  const [hoveredMovie, setHoveredMovie] = useState(null);
   return (
     <div className="row  w-[90%] flex flex-col gap-5">
       <div className="head">
@@ -207,16 +208,33 @@ function Row({ title, url, category }) {
       <div className="cards px-4 h-auto">
         <div className="crd overflow-auto flex gap-2">
           {currentMovies().map((value) => (
-            <img
-              src={IMAGE_BASE + value.poster_path}
-              alt=""
-              className="w-56 cursor-pointer"
-              onClick={()=>getMovieTrailer(value.id).then((trailer)=>{
-                // alert(`${trailer} and ${value.id}`)
-                Context.dispatch({type:TYPE.setMovieId,payload:trailer})
-              })}
+            <div
               key={value.id}
-            />
+              className="b min-w-[100px] lg:min-w-[155px] md:min-w-[130px] relative overflow-hidden cursor-pointer"
+              onMouseEnter={() => setHoveredMovie(value)}
+              onMouseLeave={() => setHoveredMovie(null)}
+            >
+              <img
+                src={IMAGE_BASE + value.poster_path}
+                alt=""
+                className="w-56 "
+                onClick={() =>
+                  getMovieTrailer(value.id).then((trailer) => {
+                    // alert(`${trailer} and ${value.id}`)
+                    Context.dispatch({
+                      type: TYPE.setMovieId,
+                      payload: trailer,
+                    });
+                  })
+                }
+                key={value.id}
+              />
+              {hoveredMovie && hoveredMovie.id === value.id && (
+                <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-75 text-white p-2 text-center h-full flex items-center justify-center transition ease-in-out delay-150 ">
+                  {value.original_title}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>

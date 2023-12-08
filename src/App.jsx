@@ -39,7 +39,7 @@ function App() {
       <main className="">
         <Banner />
         <div className="rows bg-[#141414] flex flex-col gap-4 items-center min-h-[300px] py-10">
-          <Suspense fallback={<h2>Loading</h2>}>
+          <Suspense fallback={<h2>Loading...</h2>}>
             <Row
               title="Popular"
               url={`movie/popular?api_key=${API_KEY}`}
