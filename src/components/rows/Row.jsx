@@ -213,20 +213,24 @@ function Row({ title, url, category }) {
               className="b min-w-[100px] lg:min-w-[155px] md:min-w-[130px] relative overflow-hidden cursor-pointer"
               onMouseEnter={() => setHoveredMovie(value)}
               onMouseLeave={() => setHoveredMovie(null)}
+              onClick={() =>
+                getMovieTrailer(value.id).then((trailer) => {
+                  // alert(`${trailer} and ${value.id}`)
+                  // window.scrollTo({
+                  //   top: 0,
+                  //   behavior: 'smooth', // Optional: adds smooth scrolling effect
+                  // });
+                  Context.dispatch({
+                    type: TYPE.setMovieId,
+                    payload: trailer,
+                  });
+                })
+              }
             >
               <img
                 src={IMAGE_BASE + value.poster_path}
                 alt=""
                 className="w-56 "
-                onClick={() =>
-                  getMovieTrailer(value.id).then((trailer) => {
-                    // alert(`${trailer} and ${value.id}`)
-                    Context.dispatch({
-                      type: TYPE.setMovieId,
-                      payload: trailer,
-                    });
-                  })
-                }
                 key={value.id}
               />
               {hoveredMovie && hoveredMovie.id === value.id && (

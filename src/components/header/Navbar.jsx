@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 
 function Navbar() {
   return (
-    <header className="w-[100%] h-16  flex items-center bg-black z-10">
+    <header className="w-[100%] h-16  flex items-center  absolute top-0 left-0" style={{zIndex:"99"}}>
       <div className="w-[85%] lg:w-[92%] mx-auto flex justify-between">
         <div className="logo flex gap-10">
           <img src={Logo} alt="" className="w-24"/>

@@ -18,10 +18,14 @@ function Banner() {
     youtubeRef.current.mute();
     youtubeRef.current.setVolume(50);
   };
-  const handleMute=()=>{
-    Context.dispatch({ type: TYPE.soundeMuteInBg,payload:false })
-    {Context.state.bannersoundMute?youtubeRef.current.unMute():youtubeRef.current.mute()}
-  }
+  const handleMute = () => {
+    Context.dispatch({ type: TYPE.soundeMuteInBg, payload: false });
+    {
+      Context.state.bannersoundMute
+        ? youtubeRef.current.unMute()
+        : youtubeRef.current.mute();
+    }
+  };
   const Context = useContext(AllContext);
   useEffect(() => {
     const script = document.createElement("script");
@@ -34,13 +38,13 @@ function Banner() {
     };
     // let randomeIdx=Math.floor(Math.random()*Context.state.popularMovies.length)
     getMovieTrailer(897087)
-    .then((trailer) => {
-      // alert(`${trailer} in banner`)
-      Context.dispatch({ type: TYPE.setMovieId, payload: trailer });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      .then((trailer) => {
+        // alert(`${trailer} in banner`)
+        Context.dispatch({ type: TYPE.setMovieId, payload: trailer });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     return () => {
       document.body.removeChild(script);
     };
@@ -79,15 +83,17 @@ function Banner() {
     zIndex: -1,
     objectFit: "cover",
   };
-console.log(`${Context.state.movieId} aft`)
+  console.log(`${Context.state.movieId} aft`);
   return (
-    <div className="banner w-full h-[570px] md:h-[650px] bg-cover bg-no-repeat relative"
-    //  style={{background:`url(${Sample})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",objectFit:"cover"}}
+    <div
+      className="banner w-full h-[570px] md:h-[650px] bg-cover bg-no-repeat relative"
+      //  style={{background:`url(${Sample})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",objectFit:"cover"}}
     >
       <Navbar />
       <div className="absolute top-0 left-0 w-full h-full">
         <YouTube
-          videoId={Context.state.movieId} // U is missing last
+          key={Context.state.movieId} // Add key prop
+          videoId={Context.state.movieId}
           opts={opts}
           onReady={onPlayerReady}
           autoplay
@@ -95,12 +101,12 @@ console.log(`${Context.state.movieId} aft`)
         />
       </div>
       <div className="flex flex-wrap h-[85%]">
-        <div className="md:w-1/2 sm:w-[75%] flex flex-col justify-center px-14 ">
+        <div className="md:w-1/2 sm:w-[75%] flex flex-col justify-center px-14  z-40">
           <div className="flex flex-col lg:w-[75%] gap-5  sm:w-[400px]">
-            <h1 className="text-2xl md:text-4xl text-white font-medium lg:text-6xl mb-10">
+            <h1 className="text-2xl md:text-4xl text-white  lg:text-6xl mb-10">
               Movie Name 
             </h1>
-            <p className="text-white text-1xl lg:text-2xl">
+            <p className="text-white text-lg lg:text-1xl">
               A group of cold case investigators stay at the Carmichael Manor,
               site of the grisly and unsolved murders of the Carmichael family
               back in the
