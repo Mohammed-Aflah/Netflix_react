@@ -4,38 +4,14 @@ import Banner from "./components/Banner/Banner";
 import { reducer } from "./reducers/reducer";
 import { API_KEY } from "./constants/constant";
 import ModalBox from "./components/Modal/ModalBox";
+import { InitialValues } from "./helper/reducerInitial";
 // import Navbar from "./components/header/Navbar"
 const AllContext = React.createContext();
 const Row = lazy(() => import("./components/rows/Row"));
 function App() {
-  const [state, dispatch] = useReducer(reducer, {
-    bannersoundMute: false,
-    popularMovies: [],
-    nowPlayingMovie: [],
-    upComingMovie: [],
-    genreMovie: [],
-    animatedMovie: [],
-    comedyMovie: [],
-    actionMovies: [],
-    adventuresMovie: [],
-    crimeMovie: [],
-    documentaryMovie: [],
-    dramaMovie: [],
-    familyMovie: [],
-    fantasyMovi: [],
-    horrorMovi: [],
-    musicMovi: [],
-    romanceMovie: [],
-    scienceMovie: [],
-    tvMovie: [],
-    thrillerMovie: [],
-    warMovie: [],
-    westernMovie: [],
-    topRated: [],
-    movieId: null,
-  });
+  const [state, dispatch] = useReducer(reducer, InitialValues);
   return (
-    <AllContext.Provider value={{ state, dispatch }}>
+    <AllContext.Provider value={{ state, dispatch,randomeIdx:897087 }}>
       <main className="">
         <Banner />
         <div className="rows bg-[#141414] flex flex-col gap-4 items-center min-h-[300px] py-10">

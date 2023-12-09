@@ -5,10 +5,13 @@ import { AllContext } from "../../App";
 import { IMAGE_BASE, axiosInstance } from "../../constants/constant";
 import { TYPE } from "../../reducers/reducer";
 import getMovieTrailer from "../../helper/getMovieTrailer";
+import { currentMovies } from "../../helper/getCurrentMovie";
+// import { InitialValues } from "../../helper/reducerInitial";
 function Row({ title, url, category }) {
   const Context = useContext(AllContext);
   const popularMovies = Context.state.popularMovies;
 
+  
   useEffect(() => {
     axiosInstance.get(url).then((response) => {
       switch (category) {
@@ -146,59 +149,17 @@ function Row({ title, url, category }) {
             payload: response.data.results,
           });
       }
-      console.log(response.data.results);
+      
+      console.log(`randime id ${randomeIdx}`);
     });
   }, []);
-  const currentMovies = () => {
-    switch (category) {
-      case "popular":
-        return Context.state.popularMovies;
-      case "nowplaying":
-        return Context.state.nowPlayingMovie;
-      case "upcoming":
-        return Context.state.upComingMovie;
-      case "genre":
-        return Context.state.genreMovie;
-      case "animated":
-        return Context.state.animatedMovie;
-      case "comedy":
-        return Context.state.comedyMovie;
-      case "action":
-        return Context.state.actionMovies;
-      case "adventures":
-        return Context.state.adventuresMovie;
-      case "crime":
-        return Context.state.crimeMovie;
-      case "documentary":
-        return Context.state.documentaryMovie;
-      case "drama":
-        return Context.state.dramaMovie;
-      case "fantasy":
-        return Context.state.fantasyMovi;
-      case "horror":
-        return Context.state.horrorMovi;
-      case "music":
-        return Context.state.musicMovi;
-      case "romance":
-        return Context.state.romanceMovie;
-      case "science":
-        return Context.state.scienceMovie;
-      case "tv":
-        return Context.state.tvMovie;
-      case "thrilled":
-        return Context.state.thrillerMovie;
-      case "war":
-        return Context.state.warMovie;
-      case "western":
-        return Context.state.westernMovie;
-      case "toprated":
-        return Context.state.topRated;
-      default:
-        return [];
-    }
-  };
 
-  console.log(popularMovies, "populasfd ");
+  const randomeIdx=Math.floor(Math.random()*popularMovies.length)
+  console.log(`random Index ${JSON.stringify(popularMovies[randomeIdx])}`);
+  if(popularMovies[randomeIdx] && popularMovies[randomeIdx].id){
+    console.log('randome id',popularMovies[randomeIdx].id);
+    Context.randomeIdx=popularMovies[randomeIdx].id
+  }
   const [hoveredMovie, setHoveredMovie] = useState(null);
   return (
     <div className="row  w-[90%] flex flex-col gap-5">
@@ -207,7 +168,7 @@ function Row({ title, url, category }) {
       </div>
       <div className="cards px-4 h-auto">
         <div className="crd overflow-auto flex gap-2">
-          {currentMovies().map((value) => (
+          {currentMovies(category,Context).map((value) => (
             <div
               key={value.id}
               className="b min-w-[100px] lg:min-w-[155px] md:min-w-[130px] relative overflow-hidden cursor-pointer"

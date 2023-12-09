@@ -36,8 +36,8 @@ function Banner() {
       // The YouTube API script has loaded
       // Now you can render the YouTube component
     };
-    // let randomeIdx=Math.floor(Math.random()*Context.state.popularMovies.length)
-    getMovieTrailer(897087)
+    console.log(Context.randomeIdx,' in banner');
+    getMovieTrailer(Context.randomeIdx)
       .then((trailer) => {
         // alert(`${trailer} in banner`)
         Context.dispatch({ type: TYPE.setMovieId, payload: trailer });
@@ -83,14 +83,14 @@ function Banner() {
     zIndex: -1,
     objectFit: "cover",
   };
-  console.log(`${Context.state.movieId} aft`);
+  // console.log(`${Context.state.movieId} aft`);
   return (
     <div
-      className="banner w-full h-[570px] md:h-[650px] bg-cover bg-no-repeat relative"
+      className="banner w-full h-[370px] md:h-[450px] lg:h-[670px] bg-cover bg-no-repeat relative"
       //  style={{background:`url(${Sample})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",objectFit:"cover"}}
     >
       <Navbar />
-      <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute top-0 left-0 w-full h-full bottom-0">
         <YouTube
           key={Context.state.movieId} // Add key prop
           videoId={Context.state.movieId}

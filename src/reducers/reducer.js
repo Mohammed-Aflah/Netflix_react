@@ -22,6 +22,7 @@ const TYPE = {
   setGenreMovies: "setGenreMovies",
   setTopRated: "settopRatedMovies",
   setMovieId: "setMovieId",
+  setRandomeIndex:"setRandomeIndex"
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -136,11 +137,16 @@ const reducer = (state, action) => {
         topRated: action.payload,
       };
     case TYPE.setMovieId:
-      console.log(`came ${action.payload}`)
+      // console.log(`came ${action.payload}`)
       return {
         ...state,
         movieId: action.payload,
       };
+      case TYPE.setRandomeIndex:
+        return{
+          ...state,
+          randomeIdx:action.payload
+        }
     // Add more cases for other action types as needed
 
     default:
