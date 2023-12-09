@@ -176,11 +176,10 @@ function Row({ title, url, category }) {
               onMouseLeave={() => setHoveredMovie(null)}
               onClick={() =>
                 getMovieTrailer(value.id).then((trailer) => {
-                  // alert(`${trailer} and ${value.id}`)
-                  // window.scrollTo({
-                  //   top: 0,
-                  //   behavior: 'smooth', // Optional: adds smooth scrolling effect
-                  // });
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth', // Optional: adds smooth scrolling effect
+                  });
                   Context.dispatch({
                     type: TYPE.setMovieId,
                     payload: trailer,

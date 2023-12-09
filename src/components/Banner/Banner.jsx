@@ -53,18 +53,7 @@ function Banner() {
   const opts = {
     height: "100%",
     width: "100%",
-    // playerVars: {
-    //   autoplay: 1,
-    //   muted: 1,
-    //   controls: 0,
-    //   modestbranding: 1, // Hide the YouTube logo in the control bar
-    //   disablekb: 1,      // Disable keyboard controls
-    //   enablejsapi: 0,    // Disable the JavaScript API (prevents sharing links)
-    //   loop: 1,           // Enable video looping
-    //   playlist: '2g811Eo7K8U', // Set the video ID as a playlist for looping
-    // },
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
       modestbranding: 1, // Hide the YouTube logo in the control bar
       disablekb: 1, // Disable keyboard controls
