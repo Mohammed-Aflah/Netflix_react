@@ -7,7 +7,6 @@ import { TYPE } from "../../reducers/reducer";
 import getMovieTrailer from "../../helper/getMovieTrailer";
 import { currentMovies } from "../../helper/getCurrentMovie";
 import { setMovies } from "../../helper/setMovis";
-// import { InitialValues } from "../../helper/reducerInitial";
 function Row({ title, url, category }) {
   const Context = useContext(AllContext);
   const popularMovies = Context.state.popularMovies;
@@ -43,7 +42,7 @@ function Row({ title, url, category }) {
                 getMovieTrailer(value.id).then((trailer) => {
                   window.scrollTo({
                     top: 0,
-                    behavior: "smooth", // Optional: adds smooth scrolling effect
+                    behavior: "smooth", 
                   });
                   Context.dispatch({
                     type: TYPE.setMovieId,

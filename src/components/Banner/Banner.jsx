@@ -65,7 +65,7 @@ function Banner() {
   };
   const youtubeStyle = {
     position: "absolute",
-    top: 0,
+    bottom: 0,
     left: 0,
     width: "100%",
     height: "100%",
@@ -92,15 +92,15 @@ function Banner() {
       <div className="flex flex-wrap h-[85%]">
         <div className="md:w-1/2 sm:w-[75%] flex flex-col justify-center px-14  z-40">
           <div className="flex flex-col lg:w-[75%] gap-5  sm:w-[400px]">
-            <h1 className="text-2xl md:text-4xl text-white  lg:text-6xl mb-10">
+            {/* <h1 className="text-2xl md:text-4xl text-white  lg:text-6xl mb-10">
               Movie Name 
-            </h1>
-            <p className="text-white text-lg lg:text-1xl">
+            </h1> */}
+            {/* <p className="text-white text-lg lg:text-1xl">
               A group of cold case investigators stay at the Carmichael Manor,
               site of the grisly and unsolved murders of the Carmichael family
               back in the
-            </p>
-            <div className="flex gap-9">
+            </p> */}
+            {/* <div className="flex gap-9">
               <button className="py-2 px-8  flex items-center gap-3 bg-slate-50 rounded-sm">
                 <FaPlay /> <p className="font-bold text-1xl">Play</p>
               </button>
@@ -108,7 +108,7 @@ function Banner() {
                 <p className="font-bold">More Info</p>
                 <PiWarningCircleBold className="text-2xl" />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="w-1/2 ">
